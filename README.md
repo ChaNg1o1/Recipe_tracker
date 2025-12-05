@@ -2,7 +2,7 @@
 
 <img src="assets/screenshots/logo_transparent.png" alt="RecipeTracker Logo" width="300">
 
-## 基于 Java 带有LLM API交互的食谱管理系统 
+## 基于Java 带有LLM API交互的食谱管理系统
 
 [![Java](https://img.shields.io/badge/Java-17+-orange?style=flat-square&logo=openjdk)](https://www.java.com/)
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue?style=flat-square&logo=apachemaven)](https://maven.apache.org/)
@@ -44,7 +44,7 @@
 </div>
 
 
-[点我云端](https://managing-tallie-copytek-1cbed079.koyeb.app/)快速体验，也可以通过已配置好 TiDB 云数据库来跳过本地环境配置配置直接体验。但云端不能显式地看到导出功能的结果。
+[点我云端](https://managing-tallie-copytek-1cbed079.koyeb.app/)快速体验，也可以通过已配置好的 TiDB 云数据库来跳过本地环境配置直接体验。但云端无法显示导出功能的结果。
 
 ## 本地部署
 
