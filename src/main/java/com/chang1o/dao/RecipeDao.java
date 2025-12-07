@@ -200,6 +200,34 @@ public class RecipeDao {
         return recipes;
     }
 
+
+    public List<Recipe> getRecipesByUser(int userId) {
+        List<Recipe> recipes = new ArrayList<>();
+        String sql = "SELECT id, name, instructions, category_id, user_id FROM recipes WHERE user_id = ? ORDER BY name";
+
+        try (Connection conn = DBUtil.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Recipe recipe = new Recipe();
+                    recipe.setId(rs.getInt("id"));
+                    recipe.setName(rs.getString("name"));
+                    recipe.setInstructions(rs.getString("instructions"));
+                    recipe.setCategoryId(rs.getInt("category_id"));
+                    recipe.setUserId(rs.getInt("user_id"));
+                    recipes.add(recipe);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("查询用户食谱失败：" + e.getMessage());
+        }
+
+        return recipes;
+    }
+
     public boolean updateRecipe(Recipe recipe){
         String sql = "UPDATE recipes SET name = ? , instruction SET ? , category_id SET ? , user_id SET ? , WHERE id = ?";
         Connection conn = null;

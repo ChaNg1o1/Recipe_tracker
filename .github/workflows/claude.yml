@@ -26,44 +26,34 @@ jobs:
       pull-requests: write
       issues: write
       id-token: write
-      actions: read # Required for Claude to read CI results on PRs
+      actions: read
+      security-events: read 
+      checks: read          
+      statuses: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0 
 
       - name: Run Claude Code
         id: claude
         uses: anthropics/claude-code-action@v1
         env:
           ANTHROPIC_BASE_URL: https://api.moonshot.cn/anthropic
-          # ANTHROPIC_BASE_URL: https://open.bigmodel.cn/api/anthropic
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           track_progress: true
+          claude_args: '--allowed-tools "Bash,Edit,Grep,Ls,Find,Read,Glob"'
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
- 
-            Please review this pull request with a focus on:
-            - Code quality and best practices
-            - Potential bugs or issues
-            - Security implications
-            - Performance considerations
- 
-            Provide detailed feedback using inline comments for specific issues.
-            Please respond in Simplified Chinese.
- 
-          # This is an optional setting that allows Claude to read CI results on PRs
+            
+            Please review this pull request/issue regarding dependencies.
+            Check for security vulnerabilities and code quality.
+            Respond in Simplified Chinese.
+          
           additional_permissions: |
             actions: read
-
-          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
-          # prompt: 'Update the pull request description to include a summary of changes.'
-
-          # Optional: Add claude_args to customize behavior and configuration
-          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
-          # or https://code.claude.com/docs/en/cli-reference for available options
-          # claude_args: '--allowed-tools Bash(gh pr:*)'
-
+            security-events: read
