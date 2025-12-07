@@ -10,8 +10,8 @@
 [![License](https://img.shields.io/badge/License-WTFPL-green?style=flat-square)](LICENSE)
 
 [界面展示](#界面展示) •
-[快速开始](#云端开始) •
-[本地部署](#本地部署) 
+[快速开始](#️-云端开始) •
+[本地部署](#️-本地部署) 
 
 <a href="https://managing-tallie-copytek-1cbed079.koyeb.app/">
   <img src="https://img.shields.io/badge/无需配置-点我体验-blue?style=for-the-badge" alt="在线演示">
@@ -42,8 +42,6 @@
 
 [查看配套Docker云容器项目](https://github.com/ChaNg1o1/recipetracker-deploy)
 </div>
-
-
 [云端快速体验](https://managing-tallie-copytek-1cbed079.koyeb.app/)或者通过已配置的云数据库跳过本地环境配置直接体验。
 
 ## 💬 Chat with the Repo
@@ -97,11 +95,11 @@ db.password=your_password
 + props.load(DBUtil.class.getClassLoader().getResourceAsStream("clouddatabase.properties"));
 ```
 
->TiDB 云数据库位于 AWS 日本区域，存在网络延迟
+> TiDB 云数据库位于 AWS 日本区域，存在网络延迟
 
 </details>
 
-#### 3. 配置[ Kimi API Key](https://platform.moonshot.cn/)
+#### 3. 配置 [Kimi API Key](https://platform.moonshot.cn/)
 
 为启用 AI 功能，需要配置 Kimi API Key：
 
@@ -138,7 +136,7 @@ mvn clean compile
 ```
 
 | 运行方式 | 命令 | 适用场景 |
-|:--------:|------|:--------:|
+|:--------:|:------|:---------:|
 | Unix | `chmod +x run.sh && ./run.sh` | 开发调试 |
 | Windows | `run.bat` | 开发调试 |
 | Maven | `mvn exec:java -Dexec.mainClass="com.chang1o.recipe.Main"` | 开发调试 |
