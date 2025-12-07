@@ -3,7 +3,6 @@ package com.chang1o.dao;
 import com.chang1o.model.PantryItem;
 import com.chang1o.util.DBUtil;
 
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

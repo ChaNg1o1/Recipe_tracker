@@ -52,6 +52,7 @@ jobs:
             
             Please review this pull request/issue regarding dependencies.
             Check for security vulnerabilities and code quality.
+            Be care of URL generation correctly.
             Respond in Simplified Chinese.
           
           additional_permissions: |
