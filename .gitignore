@@ -38,3 +38,6 @@ build/
 ### Mac OS ###
 .DS_Store
 .repomix/bundles.json
+
+.gemini/
+gha-creds-*.json

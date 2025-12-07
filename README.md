@@ -109,5 +109,5 @@ mvn clean compile
 ---
 
 <div align="center">
-Made with care by ChaNg1o and his AI ❤️ Friends
+  <img src="assets/screenshots/sticker.png" alt="Made with care by ChaNg1o and his AI Friends" width="400">
 </div>
