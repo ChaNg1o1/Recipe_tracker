@@ -91,6 +91,21 @@
                             
                             <imageName>recipe-tracker</imageName>
                             
+                            <!-- 添加资源文件配置，让GraalVM包含必要的资源文件 -->
+                            <resources>
+                                <includes>
+                                    <include>
+                                        <pattern>database.properties</pattern>
+                                    </include>
+                                    <include>
+                                        <pattern>schema.sql</pattern>
+                                    </include>
+                                    <include>
+                                        <pattern>init_data.sql</pattern>
+                                    </include>
+                                </includes>
+                            </resources>
+                            
                             <metadataRepository>
                                 <enabled>true</enabled>
                             </metadataRepository>

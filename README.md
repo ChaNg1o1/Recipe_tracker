@@ -59,12 +59,10 @@
 <div align="center">
   <img src="assets/screenshots/workflow.svg" alt="云端部署流程" width="100%">
 
-<a href="https://github.com/ChaNg1o1/recipetracker-deploy" target="_blank" rel="noopener noreferrer">查看配套Docker云容器项目</a>
+
+
+从云端<a href="https://managing-tallie-copytek-1cbed079.koyeb.app/" target="_blank" rel="noopener noreferrer">快速体验</a>或者通过已配置的云数据库跳过本地环境配置直接体验
 </div>
-
-
-<a href="https://managing-tallie-copytek-1cbed079.koyeb.app/" target="_blank" rel="noopener noreferrer">云端快速体验</a>或者通过已配置的云数据库跳过本地环境配置直接体验。
-
 
 ## 🔌 快速开始
 
@@ -77,7 +75,7 @@
 # 拉取镜像
 docker pull ghcr.io/chang1o1/recipetracker
 
-# 交互式运行（控制台程序）
+# 运行CLI程序
 docker run -it ghcr.io/chang1o1/recipetracker
 ```
 
@@ -88,22 +86,13 @@ docker run -it ghcr.io/chang1o1/recipetracker
 # 构建 Web 终端镜像
 docker build -t recipetracker-web .
 
-# 运行容器 (Web 终端模式，端口 8000)
+# 运行容器 Web终端
 docker run -p 8000:8000 recipetracker-web
 ```
 
 访问 `http://localhost:8000` 即可在浏览器中使用终端界面。
 
 </details>
-
----
-
-### 使用 Jar
-
-```bash
-# 下载并运行
-java -jar RecipeTracker-*.jar
-```
 
 ## 🛠️ 本地开发
 
