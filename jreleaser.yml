@@ -14,8 +14,8 @@ project:
 
 release:
   github:
-    owner: ChaNg1o1
-    name: RecipeTracker
+    owner: '{{env.JRELEASER_GITHUB_OWNER}}'
+    name: '{{env.JRELEASER_GITHUB_REPO}}'
     overwrite: true
     milestone:
       close: false

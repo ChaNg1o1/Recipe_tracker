@@ -152,6 +152,8 @@ jobs:
           JRELEASER_PROJECT_VERSION: ${{ env.VERSION }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JRELEASER_DOCKER_DEFAULT_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          JRELEASER_GITHUB_OWNER: ${{ github.repository_owner }}
+          JRELEASER_GITHUB_REPO: ${{ github.event.repository.name }}
         continue-on-error: true
 
       - name: Retry JReleaser on failure
@@ -163,6 +165,8 @@ jobs:
           JRELEASER_PROJECT_VERSION: ${{ env.VERSION }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JRELEASER_DOCKER_DEFAULT_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          JRELEASER_GITHUB_OWNER: ${{ github.repository_owner }}
+          JRELEASER_GITHUB_REPO: ${{ github.event.repository.name }}
 
       - name: Verify release artifacts
         run: |
