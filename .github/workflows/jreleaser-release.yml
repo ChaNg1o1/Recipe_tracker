@@ -46,9 +46,9 @@ jobs:
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
           echo "Detected version: $VERSION from tag: $TAG_NAME"
           
-          # Checkout the specific tag
+          # Stay on main branch to use latest jreleaser.yml config
+          # but fetch tags for changelog generation
           git fetch --tags
-          git checkout "$TAG_NAME"
 
       - name: Build JAR with Maven
         run: mvn -B package -DskipTests --file pom.xml
