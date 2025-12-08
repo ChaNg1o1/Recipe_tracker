@@ -24,11 +24,11 @@ public class DBUtil {
 
         try{
             Properties props = new Properties();
-            var inputStream = DBUtil.class.getClassLoader().getResourceAsStream("clouddatabase.properties");
-
+            var inputStream = DBUtil.class.getClassLoader().getResourceAsStream("database.properties");
+            
             // 检查资源文件是否存在，避免 NullPointerException
             if (inputStream == null) {
-                System.out.println("无法找到 clouddatabase.properties 配置文件，将使用默认配置");
+                System.out.println("无法找到 database.properties 配置文件，将使用默认配置");
                 setDefaultConfiguration();
                 return;
             }
@@ -45,7 +45,7 @@ public class DBUtil {
             Class.forName(DB_DRIVER);
             isInitialized = true;
         }catch (IOException e){
-            System.out.println("无法加载云数据库配置将会使用默认配置");
+            System.out.println("无法加载数据库配置将会使用默认配置");
             setDefaultConfiguration();
         }catch (ClassNotFoundException e){
             System.out.println("数据库驱动加载失败，检查驱动是否正确安装");
@@ -55,9 +55,9 @@ public class DBUtil {
    }
 
    private static void setDefaultConfiguration(){
-        DB_URL = "jdbc:mysql://gateway01.ap-northeast-1.prod.aws.tidbcloud.com:4000/recipe_db?sslMode=VERIFY_IDENTITY&useSSL=true&allowPublicKeyRetrieval=true";
-        DB_USERNAME = "3fxEzt9cAjLn278.root";
-        DB_PASSWORD = "3Cg42LxpPeZUxHhZ";
+        DB_URL = "jdbc:mysql://localhost:3306/recipe_db";
+        DB_USERNAME = "root";
+        DB_PASSWORD = "";
         DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 
         try{
