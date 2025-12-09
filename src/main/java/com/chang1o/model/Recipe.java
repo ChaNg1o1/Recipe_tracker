@@ -14,10 +14,10 @@ public class Recipe {
 
     public Recipe(){}
 
-    public Recipe(String name,String instructions,int id,int userId){
+    public Recipe(String name, String instructions, int categoryId, int userId) {
         this.name = name;
         this.instructions = instructions;
-        this.id = id;
+        this.categoryId = categoryId;
         this.userId = userId;
     }
 
