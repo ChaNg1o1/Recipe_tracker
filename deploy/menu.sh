@@ -6,11 +6,11 @@ while true; do
     clear
     echo ""
     echo "欢迎进入 RecipeTracker 演示环境"
-    echo "默认等待5秒自动进入演示模式，你可以随时Ctrl + C打断"
+    echo "默认等待5秒自动进入演示模式 您可以随时Ctrl + C打断"
     echo ""
     echo "1.  观看演示"
     echo "2.  快速体验"
-    echo "3.  退出"
+    echo "3.  退出演示"
     echo ""
     printf "请选择 [1-3]: "
     if read -t 5 choice; then

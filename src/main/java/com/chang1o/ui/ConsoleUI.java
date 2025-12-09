@@ -26,7 +26,7 @@ public class ConsoleUI {
         System.out.println("└──────────────────────────────────────────────────┘");
         System.out.println();
         System.out.println("  RecipeTracker");
-        System.out.println("  编译日期: 2025-12-08");
+        System.out.println("  编译日期: 2025-12-09");
         System.out.println();
     }
 
