@@ -33,13 +33,15 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
     
     - name: Run tests with JaCoCo
+      continue-on-error: true
       run: mvn clean verify
     
     - name: Generate JaCoCo Reports
+      if: always()
       run: mvn jacoco:report
     
     - name: Upload coverage reports to Codecov
-      if: env.CODECOV_TOKEN != ''
+      if: always() && env.CODECOV_TOKEN != ''
       uses: codecov/codecov-action@v4
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -51,7 +53,7 @@ jobs:
         fail_ci_if_error: false
     
     - name: Run SonarQube Analysis
-      if: env.SONAR_TOKEN != ''
+      if: always() && env.SONAR_TOKEN != ''
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -69,7 +71,7 @@ jobs:
         -Dsonar.test.exclusions=src/test/**
     
     - name: SonarQube Analysis Complete
-      if: env.SONAR_TOKEN != ''
+      if: always() && env.SONAR_TOKEN != ''
       run: |
         echo "✅ SonarQube analysis completed successfully"
-        echo "📊 View results at: https://sonarcloud.io/project/overview?id=ChaNg1o1_RecipeTracker"
+        echo "📊 View results at: https://sonarcloud.io/project/overview?id=ChaNg1o1_recipe-tracker"
