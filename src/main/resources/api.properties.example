@@ -1,3 +1,14 @@
+# Kimi AI
 kimi.api.url=https://api.moonshot.cn/v1/chat/completions
 kimi.api.key=YOUR_API_KEY_HERE
 kimi.api.model=kimi-k2
+
+# Zhipu AI
+zhipu.api.url=https://open.bigmodel.cn/api/paas/v4/chat/completions
+zhipu.api.key=YOUR_API_KEY_HERE
+zhipu.api.model=glm-4.6
+
+# DeepSeek AI
+deepseek.api.url=https://api.deepseek.com/chat/completions
+deepseek.api.key=YOUR_API_KEY_HERE
+deepseek.api.model=deepseek-chat

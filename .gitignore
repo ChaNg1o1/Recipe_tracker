@@ -42,3 +42,6 @@ build/
 .gemini/
 gha-creds-*.json
 .kiro/
+.opencode/
+.claude/
+.specify/

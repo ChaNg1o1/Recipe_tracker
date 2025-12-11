@@ -50,14 +50,16 @@
 Chat with the repository about the project structure and features?
 
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://app.devin.ai/wiki/ChaNg1o1/RecipeTracker)
-[![zread](https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTk0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff)](https://zread.ai/ChaNg1o1/RecipeTracker)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://app.devin.ai/wiki/ChaNg1o1/recipe-tracker)
+[![zread](https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff)](https://zread.ai/ChaNg1o1/recipe-tracker)
 
 
 ## ☁️ Cloud Start
 
 <div align="center">
   <img src="assets/screenshots/workflow.svg" alt="Cloud Deployment Workflow" width="100%">
+
+
 
 Experience directly from the cloud via <a href="https://managing-tallie-copytek-1cbed079.koyeb.app/" target="_blank" rel="noopener noreferrer">Quick Cloud Demo</a> or skip local environment configuration using a configured cloud database.
 </div>
@@ -66,11 +68,46 @@ Experience directly from the cloud via <a href="https://managing-tallie-copytek-
 
 ### Download Pre-built Release: <a href="https://github.com/ChaNg1o1/recipe-tracker/releases/" target="_blank" rel="noopener noreferrer">Download</a>
 
-If MySQL is not installed locally, you can set the environment variable `DB_CONFIG` to override the configuration file settings and use a cloud database:
+If MySQL is not installed locally, you can set the environment variable `DB_CONFIG` to use a cloud database:
+
+
 
 ```bash
 export DB_CONFIG=clouddatabase.properties
 ```
+#### Configure API to support the following three API services: [Kimi](https://platform.moonshot.cn/), [Zhipu](https://open.bigmodel.cn/), [DeepSeek](https://platform.deepseek.com/)
+
+<details open>
+<summary><b>Method 1: Configuration File</b></summary>
+
+1. Copy the example configuration file:
+```bash
+cp src/main/resources/api.properties.example src/main/resources/api.properties
+```
+
+1. Edit `src/main/resources/api.properties` and fill in your API Key:
+```properties
+# Choose one of the following
+kimi.api.key=sk-*
+# zhipu.api.key=sk-*
+# deepseek.api.key=sk-*
+```
+</details>
+
+<details>
+<summary><b>Method 2: Environment Variables</b></summary>
+
+You can also directly set environment variables, which will override the configuration file settings:
+
+```bash
+# Choose one of the following
+export KIMI_API_KEY=sk-*
+# export ZHIPU_API_KEY=sk-*
+# export DEEPSEEK_API_KEY=sk-*
+```
+
+</details>
+
 
 ### Using Docker
 
@@ -141,35 +178,6 @@ Edit `src/main/java/com/chang1o/util/DBUtil.java`:
 ```
 
 ⚠️ TiDB Cloud Database is located in AWS Japan region, network latency may exist
-
-</details>
-
-#### 3. Configure <a href="https://platform.moonshot.cn/" target="_blank" rel="noopener noreferrer">Kimi API</a>
-
-To enable AI features, you need to configure Kimi API:
-
-<details open>
-<summary><b>Option 1: Configuration File</b></summary>
-
-1. Copy example configuration file:
-```bash
-cp src/main/resources/api.properties.example src/main/resources/api.properties
-```
-
-2. Edit `src/main/resources/api.properties` and fill in your API Key:
-```properties
-kimi.api.key=sk-*
-```
-</details>
-
-<details>
-<summary><b>Option 2: Environment Variable</b></summary>
-
-You can also directly set the environment variable `KIMI_API_KEY`, which will override the settings in the configuration file:
-
-```bash
-export KIMI_API_KEY=sk-*
-```
 
 </details>
 

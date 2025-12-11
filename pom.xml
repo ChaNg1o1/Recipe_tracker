@@ -106,8 +106,14 @@
                                 <buildArg>-H:IncludeResources=database\.properties</buildArg>
                                 <buildArg>-H:IncludeResources=clouddatabase\.properties</buildArg>
                                 <buildArg>-H:IncludeResources=.*\.sql$</buildArg>
-                                <buildArg>--enable-url-protocols=https</buildArg>
+                                <buildArg>--enable-url-protocols=https,http</buildArg>
                                 <buildArg>-Ob</buildArg>
+                                <buildArg>-H:-CheckToolchain</buildArg>
+                                <buildArg>--allow-incomplete-classpath</buildArg>
+                                <buildArg>--report-unsupported-elements-at-runtime</buildArg>
+                                <buildArg>--initialize-at-run-time=com.mysql.cj.jdbc.AbandonedConnectionCleanupThread</buildArg>
+                                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                                <buildArg>-H:ConfigurationFileDirectories=/Users/chang1o/IdeaProjects/recipe-tracker/src/main/resources/native-image</buildArg>
                             </buildArgs>
                         </configuration>
                     </plugin>

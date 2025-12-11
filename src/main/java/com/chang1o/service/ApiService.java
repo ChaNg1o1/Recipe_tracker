@@ -13,33 +13,50 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.time.LocalDate;
 
-public class KimiApiService {
+public class ApiService {
 
     private static final String API_URL;
     private static final String API_KEY;
     private static final String API_MODEL;
 
-    // 静态初始化块：从配置文件加载 API 配置
     static {
         Properties props = new Properties();
-        String url = "https://api.moonshot.cn/v1/chat/completions"; // 默认值
+        String url = "";
         String key = "";
-        String model = "kimi-k2-turbo-preview"; // 默认值
+        String model = "";
 
-        try (InputStream input = KimiApiService.class.getClassLoader()
+        try (InputStream input = ApiService.class.getClassLoader()
                 .getResourceAsStream("api.properties")) {
             if (input != null) {
                 props.load(input);
-                url = props.getProperty("kimi.api.url", url);
-                key = props.getProperty("kimi.api.key", "");
-                model = props.getProperty("kimi.api.model", model);
-            } 
+            }
         } catch (IOException e) {
             System.err.println("加载API配置文件时出错: " + e.getMessage());
         }
 
-        String envKey = System.getenv("KIMI_API_KEY");
-        if (envKey != null && !envKey.isEmpty()) {
+        String envKey = null;
+        String provider = "";
+
+        if ((envKey = System.getenv("KIMI_API_KEY")) != null && !envKey.isEmpty()) {
+            provider = "kimi";
+            url = props.getProperty("kimi.api.url", "https://api.moonshot.cn/v1/chat/completions");
+            model = props.getProperty("kimi.api.model", "kimi-k2");
+        } else if ((envKey = System.getenv("ZHIPU_API_KEY")) != null && !envKey.isEmpty()) {
+            provider = "zhipu";
+            url = props.getProperty("zhipu.api.url", "https://open.bigmodel.cn/api/paas/v4/chat/completions");
+            model = props.getProperty("zhipu.api.model", "glm-4.6");
+        } else if ((envKey = System.getenv("DEEPSEEK_API_KEY")) != null && !envKey.isEmpty()) {
+            provider = "deepseek";
+            url = props.getProperty("deepseek.api.url", "https://api.deepseek.com/chat/completions");
+            model = props.getProperty("deepseek.api.model", "deepseek-chat");
+        } else {
+            provider = "kimi";
+            url = props.getProperty("kimi.api.url", "https://api.moonshot.cn/v1/chat/completions");
+            key = props.getProperty("kimi.api.key", "");
+            model = props.getProperty("kimi.api.model", "kimi-k2");
+        }
+
+        if (envKey != null) {
             key = envKey;
         }
 
@@ -48,7 +65,7 @@ public class KimiApiService {
         API_MODEL = model;
 
         if (API_KEY.isEmpty() || "YOUR_API_KEY_HERE".equals(API_KEY)) {
-            System.err.println("警告: API 未配置。请设置配置文件或设置环境变量 KIMI_API_KEY");
+            System.err.println("警告: API 未配置。请设置配置文件或设置环境变量API KEY");
         }
     }
 
@@ -56,7 +73,7 @@ public class KimiApiService {
     private RecipeService recipeService;
     private PantryService pantryService;
 
-    public KimiApiService() {
+    public ApiService() {
         this.healthDataService = new HealthDataService();
         this.recipeService = new RecipeService();
         this.pantryService = new PantryService();
@@ -69,7 +86,7 @@ public class KimiApiService {
 
             String prompt = buildHealthAdvicePrompt(healthData, recentCheckIns);
 
-            String response = callKimiAPI(prompt);
+            String response = callAIAPI(prompt);
 
             return response != null ? response : "抱歉，暂时无法生成个性化建议，请稍后再试。";
 
@@ -86,7 +103,7 @@ public class KimiApiService {
 
             String prompt = buildRecipeRecommendationPrompt(healthData, userRecipes);
 
-            String response = callKimiAPI(prompt);
+            String response = callAIAPI(prompt);
 
             if (response != null) {
                 return parseRecipeRecommendations(response);
@@ -113,7 +130,7 @@ public class KimiApiService {
 
             String prompt = buildShoppingListPrompt(selectedRecipes, pantryItems);
 
-            String response = callKimiAPI(prompt);
+            String response = callAIAPI(prompt);
 
             return response != null ? response : "抱歉，暂时无法生成智能购物清单，请稍后再试。";
 
@@ -134,7 +151,7 @@ public class KimiApiService {
 
             String prompt = buildNutritionAnalysisPrompt(healthData, recentCheckIns, days);
 
-            String response = callKimiAPI(prompt);
+            String response = callAIAPI(prompt);
 
             return response != null ? response : "抱歉，暂时无法生成营养分析报告，请稍后再试。";
 
@@ -350,7 +367,7 @@ public class KimiApiService {
         return prompt.toString();
     }
 
-    private String callKimiAPI(String prompt) {
+    private String callAIAPI(String prompt) {
         try {
             URL url = new URL(API_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -384,7 +401,7 @@ public class KimiApiService {
             }
 
         } catch (Exception e) {
-            System.err.println("调用Kimi API时发生错误: " + e.getMessage());
+            System.err.println("调用API时发生错误: " + e.getMessage());
             return null;
         }
     }

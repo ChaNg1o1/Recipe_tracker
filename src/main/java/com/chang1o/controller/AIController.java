@@ -3,7 +3,7 @@ package com.chang1o.controller;
 import com.chang1o.model.User;
 import com.chang1o.model.Recipe;
 import com.chang1o.model.PantryItem;
-import com.chang1o.service.KimiApiService;
+import com.chang1o.service.ApiService;
 import com.chang1o.service.RecipeService;
 import com.chang1o.service.PantryService;
 import com.chang1o.ui.MenuManager;
@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 public class AIController extends BaseController {
 
-    private final KimiApiService kimiApiService;
+    private final ApiService apiService;
     private final RecipeService recipeService;
     private final PantryService pantryService;
 
     public AIController() {
-        this.kimiApiService = new KimiApiService();
+        this.apiService = new ApiService();
         this.recipeService = new RecipeService();
         this.pantryService = new PantryService();
     }
@@ -59,7 +59,7 @@ public class AIController extends BaseController {
         System.out.println("[处理中] 正在基于您的健康数据生成个性化建议...");
 
         try {
-            String advice = kimiApiService.generatePersonalizedHealthAdvice(currentUser.getId());
+            String advice = apiService.generatePersonalizedHealthAdvice(currentUser.getId());
             System.out.println();
             System.out.println("[AI健康建议]");
             System.out.println("━".repeat(50));
@@ -80,7 +80,7 @@ public class AIController extends BaseController {
         System.out.println("[处理中] 正在分析您的健康状况和偏好...");
 
         try {
-            List<String> recommendations = kimiApiService.generateSmartRecipeRecommendations(currentUser.getId());
+            List<String> recommendations = apiService.generateSmartRecipeRecommendations(currentUser.getId());
             System.out.println();
             System.out.println("[AI食谱推荐]");
             System.out.println("━".repeat(50));
@@ -114,7 +114,7 @@ public class AIController extends BaseController {
 
             if (choice.equals("1")) {
                 System.out.println("正在基于您的库存情况生成智能购物清单...");
-                shoppingList = kimiApiService.generateSmartShoppingList(currentUser.getId(), recipeIds);
+                shoppingList = apiService.generateSmartShoppingList(currentUser.getId(), recipeIds);
             } else if (choice.equals("2")) {
                 List<Recipe> userRecipes = recipeService.getRecipesByUser(currentUser.getId());
 
@@ -154,7 +154,7 @@ public class AIController extends BaseController {
                 }
 
                 System.out.println("\n正在基于您选择的 " + recipeIds.size() + " 个食谱生成智能购物清单...");
-                shoppingList = kimiApiService.generateSmartShoppingList(currentUser.getId(), recipeIds);
+                shoppingList = apiService.generateSmartShoppingList(currentUser.getId(), recipeIds);
             } else {
                 System.out.println("[错误] 无效的选择");
                 return;
@@ -194,7 +194,7 @@ public class AIController extends BaseController {
         System.out.println("正在分析您最近" + days + "天的营养状况...");
 
         try {
-            String report = kimiApiService.generateNutritionAnalysisReport(currentUser.getId(), days);
+            String report = apiService.generateNutritionAnalysisReport(currentUser.getId(), days);
             System.out.println();
             System.out.println("[AI营养分析报告]");
             System.out.println("━".repeat(50));

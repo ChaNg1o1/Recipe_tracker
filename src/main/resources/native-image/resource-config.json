@@ -24,8 +24,24 @@
       },
       {
         "pattern": ".*\\.txt$"
+      },
+      {
+        "pattern": ".*\\.json$"
+      },
+      {
+        "pattern": ".*\\.yml$"
+      },
+      {
+        "pattern": ".*\\.yaml$"
       }
     ]
   },
-  "bundles": []
+  "bundles": [
+    {
+      "name": "com.mysql.cj.LocalizedErrorMessages"
+    },
+    {
+      "name": "com.mysql.cj.exceptions.SQLExceptionsMapping"
+    }
+  ]
 }
