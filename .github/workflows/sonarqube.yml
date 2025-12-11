@@ -60,7 +60,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'https://sonarcloud.io' }}
-        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION || 'chang1o1' }}
+        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION || 'ChaNg1o1' }}
       run: mvn sonar:sonar
         -Dsonar.projectKey=ChaNg1o1_recipe-tracker
         -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
