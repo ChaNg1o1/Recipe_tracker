@@ -63,6 +63,7 @@ jobs:
         SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION || 'chang1o1' }}
       run: mvn sonar:sonar
         -Dsonar.projectKey=ChaNg1o1_recipe-tracker
+        -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
         -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
         -Dsonar.token=${{ secrets.SONAR_TOKEN }}
         -Dsonar.java.source=17

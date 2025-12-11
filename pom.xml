@@ -28,7 +28,7 @@
         <sonar.projectKey>ChaNg1o1_recipe-tracker</sonar.projectKey>
         <sonar.projectName>Recipe Tracker</sonar.projectName>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-
+        <sonar.organization>chang1o1</sonar.organization>
 
         <sonar.java.source>17</sonar.java.source>
         <sonar.java.target>17</sonar.java.target>
