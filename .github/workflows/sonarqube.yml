@@ -1,0 +1,156 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches: [ main, test ]
+  pull_request:
+    branches: [ main, test ]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarqube:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for better analysis
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
+    
+    - name: Cache Maven packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+    
+    - name: Run tests with JaCoCo
+      run: mvn clean verify
+    
+    - name: Generate JaCoCo Reports
+      run: mvn jacoco:report
+    
+    - name: Upload coverage reports to Codecov
+      if: env.CODECOV_TOKEN != ''
+      uses: codecov/codecov-action@v4
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./target/site/jacoco/jacoco.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+    
+    - name: Run SonarQube Analysis
+      if: env.SONAR_TOKEN != ''
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'https://sonarcloud.io' }}
+        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION || 'chang1o1' }}
+      run: mvn sonar:sonar
+        -Dsonar.projectKey=ChaNg1o1_RecipeTracker
+        -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
+        -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+        -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+        -Dsonar.java.source=17
+        -Dsonar.java.target=17
+        -Dsonar.exclusions=**/target/**,**/*.sql
+        -Dsonar.test.exclusions=src/test/**
+    
+    - name: Check SonarQube Quality Gate
+      if: env.SONAR_TOKEN != ''
+      id: sonar-quality-gate
+      uses: sonarqube-quality-gate-action@master
+      timeout-minutes: 5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'https://sonarcloud.io' }}
+      with:
+        scanMetadataReportFile: target/sonar/report-task.txt
+    
+    - name: Create Issue on Quality Gate Failure
+      if: steps.sonar-quality-gate.outputs.quality-gate-status == 'FAILED'
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const title = `🚨 SonarQube Quality Gate Failed - ${new Date().toISOString().split('T')[0]}`;
+          const body = `
+          ## SonarQube Quality Gate Failed
+          
+          **Branch:** \`${{ github.ref_name }}\`
+          **Commit:** ${{ github.sha }}
+          **Workflow:** ${{ github.workflow }}
+          
+          The code quality analysis has detected issues that need attention.
+          
+          ### 📊 Analysis Details
+          - **SonarCloud URL:** ${{ env.SONAR_HOST_URL }}/dashboard?id=ChaNg1o1_RecipeTracker
+          - **Project Key:** ChaNg1o1_RecipeTracker
+          
+          ### 🔧 Next Steps
+          1. Review the SonarQube analysis results
+          2. Fix the identified code quality issues
+          3. Push the fixes to trigger a new analysis
+          
+          This issue will be automatically closed when the quality gate passes.
+          `;
+          
+          // Check if there's already an open issue for quality gate failures
+          const existingIssues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: ['sonarqube', 'quality-gate-failed']
+          });
+          
+          if (existingIssues.data.length === 0) {
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['sonarqube', 'quality-gate-failed', 'bug']
+            });
+          }
+    
+    - name: Close Quality Gate Issues on Success
+      if: steps.sonar-quality-gate.outputs.quality-gate-status == 'OK'
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          // Close any open quality gate failure issues
+          const openIssues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: ['sonarqube', 'quality-gate-failed']
+          });
+          
+          for (const issue of openIssues.data) {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: '✅ Quality gate is now passing. Closing this issue automatically.'
+            });
+            
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed'
+            });
+          }
