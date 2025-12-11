@@ -75,6 +75,40 @@ If MySQL is not installed locally, you can set the environment variable `DB_CONF
 export DB_CONFIG=clouddatabase.properties
 ```
 
+#### API Configuration
+
+The following three API services are supported: [Kimi](https://platform.moonshot.cn/), [Zhipu](https://open.bigmodel.cn/), [DeepSeek](https://platform.deepseek.com/)
+
+<details open>
+<summary><b>Method 1: Configuration File</b></summary>
+
+1. Copy the example configuration file:
+```bash
+cp src/main/resources/api.properties.example src/main/resources/api.properties
+```
+
+2. Edit `src/main/resources/api.properties` and fill in your API Key:
+```properties
+# Choose one configuration
+kimi.api.key=sk-*
+# zhipu.api.key=sk-*
+# deepseek.api.key=sk-*
+```
+</details>
+
+<details>
+<summary><b>Method 2: Environment Variables</b></summary>
+
+You can also directly set environment variables, which will override the configuration file settings:
+
+```bash
+# Choose one to set
+export KIMI_API_KEY=sk-*
+# export ZHIPU_API_KEY=sk-*
+# export DEEPSEEK_API_KEY=sk-*
+```
+
+</details>
 
 ### Using Docker
 
@@ -148,36 +182,7 @@ Edit `src/main/java/com/chang1o/util/DBUtil.java`:
 
 </details>
 
-#### 3. Configure <a href="https://platform.moonshot.cn/" target="_blank" rel="noopener noreferrer">Kimi API</a>
-
-To enable AI features, you need to configure the Kimi API:
-
-<details open>
-<summary><b>Method 1: Configuration File</b></summary>
-
-1. Copy the example configuration file:
-```bash
-cp src/main/resources/api.properties.example src/main/resources/api.properties
-```
-
-2. Edit `src/main/resources/api.properties` and fill in your API Key:
-```properties
-kimi.api.key=sk-*
-```
-</details>
-
-<details>
-<summary><b>Method 2: Environment Variables</b></summary>
-
-You can also directly set the environment variable `KIMI_API_KEY`, which will override the configuration file settings:
-
-```bash
-export KIMI_API_KEY=sk-*
-```
-
-</details>
-
-#### 4. Build and Run
+#### 3. Build and Run
 
 ```bash
 # Compile project
