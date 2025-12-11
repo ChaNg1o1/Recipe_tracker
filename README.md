@@ -16,13 +16,14 @@
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue?style=flat-square&logo=apachemaven)](https://maven.apache.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-00758F?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![License](https://img.shields.io/badge/License-WTFPL-green?style=flat-square)](LICENSE)
+[![codecov](https://codecov.io/gh/ChaNg1o1/recipe-tracker/branch/test/graph/badge.svg)](https://codecov.io/gh/ChaNg1o1/recipe-tracker)
 
 [界面展示](#️-界面展示) •
 [云端开始](#️-云端开始) •
 [快速开始](#️-快速开始) •
 [本地开发](#️-本地开发) 
 
-<a href="https://accurate-angelia-chang1o-10847801.koyeb.app/">
+<a href="https://managing-tallie-copytek-1cbed079.koyeb.app/">
   <img src="https://img.shields.io/badge/无需配置-点我体验-blue?style=for-the-badge" alt="在线演示">
 </a>
 
@@ -61,62 +62,28 @@
 
 
 
-从云端<a href="https://accurate-angelia-chang1o-10847801.koyeb.app/" target="_blank" rel="noopener noreferrer">快速体验</a>或者通过已配置的云数据库跳过本地环境配置直接体验
+从云端<a href="https://managing-tallie-copytek-1cbed079.koyeb.app/" target="_blank" rel="noopener noreferrer">快速体验</a>或者通过已配置的云数据库跳过本地环境配置直接体验
 </div>
 
 ## 🔌 快速开始
 
 ### 只想使用请下载: <a href="https://github.com/ChaNg1o1/recipe-tracker/releases/" target="_blank" rel="noopener noreferrer">已构建的Release</a>
 
-若本地未安装MySQL环境可以设置环境变量 `DB_CONFIG`使用云数据库：
-
-
+若本地未安装MySQL环境可以设置环境变量 `DB_CONFIG`覆盖配置文件的设置以使用云数据库：
 
 ```bash
 export DB_CONFIG=clouddatabase.properties
 ```
-#### 继续配置API支持以下三种 API 服务：[Kimi](https://platform.moonshot.cn/)、[智谱](https://open.bigmodel.cn/)、[DeepSeek](https://platform.deepseek.com/)
-
-<details open>
-<summary><b>方式一：配置文件</b></summary>
-
-1. 复制示例配置文件：
-```bash
-cp src/main/resources/api.properties.example src/main/resources/api.properties
-```
-
-1. 编辑 `src/main/resources/api.properties` 填入您的 API Key：
-```properties
-# 选择其中一个配置
-kimi.api.key=sk-*
-# zhipu.api.key=sk-*
-# deepseek.api.key=sk-*
-```
-</details>
-
-<details>
-<summary><b>方式二：环境变量</b></summary>
-
-您也可以直接设置环境变量，它将覆盖配置文件中的设置：
-
-```bash
-# 选择其中一个设置
-export KIMI_API_KEY=sk-*
-# export ZHIPU_API_KEY=sk-*
-# export DEEPSEEK_API_KEY=sk-*
-```
-
-</details>
 
 
 ### 使用 Docker
 
 ```bash
 # 拉取镜像
-docker pull ghcr.io/chang1o1/recipetracker
+docker pull ghcr.io/chang1o1/recipe-tracker
 
 # 运行CLI程序
-docker run -it ghcr.io/chang1o1/recipetracker
+docker run -it ghcr.io/chang1o1/recipe-tracker
 ```
 
 <details>
@@ -124,10 +91,10 @@ docker run -it ghcr.io/chang1o1/recipetracker
 
 ```bash
 # 构建 Web 终端镜像
-docker build -t recipetracker-web .
+docker build -t recipe-tracker-web .
 
 # 运行容器 Web终端
-docker run -p 8000:8000 recipetracker-web
+docker run -p 8000:8000 recipe-tracker-web
 ```
 
 访问 `http://localhost:8000` 即可在浏览器中使用终端界面。
@@ -139,7 +106,7 @@ docker run -p 8000:8000 recipetracker-web
 #### 1. 克隆项目
 
 ```bash
-git clone https://github.com/chang1o/recipe-tracker
+git clone https://github.com/ChaNg1o1/recipe-tracker
 cd recipe-tracker
 ```
 
@@ -178,6 +145,35 @@ db.password=your_password
 ```
 
 ⚠️ TiDB 云数据库位于 AWS 日本区域，存在网络延迟
+
+</details>
+
+#### 3. 配置<a href="https://platform.moonshot.cn/" target="_blank" rel="noopener noreferrer">Kimi API</a>
+
+为启用 AI 功能，需要配置 Kimi API：
+
+<details open>
+<summary><b>方式一：配置文件</b></summary>
+
+1. 复制示例配置文件：
+```bash
+cp src/main/resources/api.properties.example src/main/resources/api.properties
+```
+
+2. 编辑 `src/main/resources/api.properties` 填入您的 API Key：
+```properties
+kimi.api.key=sk-*
+```
+</details>
+
+<details>
+<summary><b>方式二：环境变量</b></summary>
+
+您也可以直接设置环境变量 `KIMI_API_KEY`，它将覆盖配置文件中的设置：
+
+```bash
+export KIMI_API_KEY=sk-*
+```
 
 </details>
 

@@ -16,6 +16,7 @@
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue?style=flat-square&logo=apachemaven)](https://maven.apache.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-00758F?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![License](https://img.shields.io/badge/License-WTFPL-green?style=flat-square)](LICENSE)
+[![codecov](https://codecov.io/gh/ChaNg1o1/recipe-tracker/branch/test/graph/badge.svg)](https://codecov.io/gh/ChaNg1o1/recipe-tracker)
 
 [Screenshots](#️-screenshots) •
 [Cloud Start](#️-cloud-start) •
@@ -70,53 +71,19 @@ Experience directly from the cloud via <a href="https://managing-tallie-copytek-
 
 If MySQL is not installed locally, you can set the environment variable `DB_CONFIG` to use a cloud database:
 
-
-
 ```bash
 export DB_CONFIG=clouddatabase.properties
 ```
-#### Configure API to support the following three API services: [Kimi](https://platform.moonshot.cn/), [Zhipu](https://open.bigmodel.cn/), [DeepSeek](https://platform.deepseek.com/)
-
-<details open>
-<summary><b>Method 1: Configuration File</b></summary>
-
-1. Copy the example configuration file:
-```bash
-cp src/main/resources/api.properties.example src/main/resources/api.properties
-```
-
-1. Edit `src/main/resources/api.properties` and fill in your API Key:
-```properties
-# Choose one of the following
-kimi.api.key=sk-*
-# zhipu.api.key=sk-*
-# deepseek.api.key=sk-*
-```
-</details>
-
-<details>
-<summary><b>Method 2: Environment Variables</b></summary>
-
-You can also directly set environment variables, which will override the configuration file settings:
-
-```bash
-# Choose one of the following
-export KIMI_API_KEY=sk-*
-# export ZHIPU_API_KEY=sk-*
-# export DEEPSEEK_API_KEY=sk-*
-```
-
-</details>
 
 
 ### Using Docker
 
 ```bash
 # Pull image
-docker pull ghcr.io/chang1o1/recipetracker
+docker pull ghcr.io/chang1o1/recipe-tracker
 
 # Run CLI program
-docker run -it ghcr.io/chang1o1/recipetracker
+docker run -it ghcr.io/chang1o1/recipe-tracker
 ```
 
 <details>
@@ -124,10 +91,10 @@ docker run -it ghcr.io/chang1o1/recipetracker
 
 ```bash
 # Build Web terminal image
-docker build -t recipetracker-web .
+docker build -t recipe-tracker-web .
 
 # Run container with Web terminal
-docker run -p 8000:8000 recipetracker-web
+docker run -p 8000:8000 recipe-tracker-web
 ```
 
 Access `http://localhost:8000` to use the terminal interface in your browser.
@@ -139,7 +106,7 @@ Access `http://localhost:8000` to use the terminal interface in your browser.
 #### 1. Clone Project
 
 ```bash
-git clone https://github.com/chang1o/recipe-tracker
+git clone https://github.com/ChaNg1o1/recipe-tracker
 cd recipe-tracker
 ```
 
@@ -178,6 +145,35 @@ Edit `src/main/java/com/chang1o/util/DBUtil.java`:
 ```
 
 ⚠️ TiDB Cloud Database is located in AWS Japan region, network latency may exist
+
+</details>
+
+#### 3. Configure <a href="https://platform.moonshot.cn/" target="_blank" rel="noopener noreferrer">Kimi API</a>
+
+To enable AI features, you need to configure the Kimi API:
+
+<details open>
+<summary><b>Method 1: Configuration File</b></summary>
+
+1. Copy the example configuration file:
+```bash
+cp src/main/resources/api.properties.example src/main/resources/api.properties
+```
+
+2. Edit `src/main/resources/api.properties` and fill in your API Key:
+```properties
+kimi.api.key=sk-*
+```
+</details>
+
+<details>
+<summary><b>Method 2: Environment Variables</b></summary>
+
+You can also directly set the environment variable `KIMI_API_KEY`, which will override the configuration file settings:
+
+```bash
+export KIMI_API_KEY=sk-*
+```
 
 </details>
 
