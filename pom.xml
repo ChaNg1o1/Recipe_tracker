@@ -22,6 +22,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <jacoco.version>0.8.12</jacoco.version>
+        <sonar.version>4.0.0.4121</sonar.version>
+        
+        <!-- SonarQube Configuration -->
+        <sonar.projectKey>ChaNg1o1_RecipeTracker</sonar.projectKey>
+        <sonar.projectName>RecipeTracker</sonar.projectName>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>chang1o1</sonar.organization>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.java.source>17</sonar.java.source>
+        <sonar.java.target>17</sonar.java.target>
+        <sonar.exclusions>**/target/**,**/*.sql</sonar.exclusions>
+        <sonar.test.exclusions>src/test/**</sonar.test.exclusions>
     </properties>
 
     <dependencies>
@@ -169,6 +181,11 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar.version}</version>
             </plugin>
         </plugins>
     </build>
